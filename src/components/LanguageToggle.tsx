@@ -3,10 +3,7 @@ import ReactCountryFlag from "react-country-flag";
 
 interface Props {
   language: string;
-  handleToggleLanguage: (
-    event: React.MouseEvent<HTMLElement>,
-    value: string
-  ) => void;
+  handleToggleLanguage: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
 export const LanguageToggle = ({ language, handleToggleLanguage }: Props) => {

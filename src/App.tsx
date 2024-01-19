@@ -16,7 +16,7 @@ const darkTheme = createTheme({
       styleOverrides: {
         root: {
           fontWeight: 500,
-          fontStyle: 'medium',
+          fontStyle: "medium",
           textTransform: "capitalize",
         },
       },
@@ -28,10 +28,8 @@ function App() {
   const { i18n } = useTranslation();
   const [language, setLanguage] = React.useState<string>("en");
 
-  const handleToggleLanguage = (
-    event: React.MouseEvent<HTMLElement>,
-    value: string
-  ) => {
+  const handleToggleLanguage = (event: React.MouseEvent<HTMLElement>) => {
+    const value = event.currentTarget.getAttribute("value") as string;
     setLanguage(value);
     i18n.changeLanguage(value);
   };
