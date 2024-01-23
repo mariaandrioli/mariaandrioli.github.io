@@ -37,7 +37,20 @@ export const Topbar = ({ LanguageToggle }: Props) => {
 
   const [openDrawer, toggleDrawer] = useState(false);
 
-  const isMobile = useMediaQuery("(max-width:600px)");
+  const menu = {
+    home: {
+      icon: <HomeOutlinedIcon />,
+      value: t("menuHome"),
+    },
+    contact: {
+      icon: <ContactPageOutlinedIcon />,
+      value: t("menuContact"),
+    },
+    about: {
+      icon: <Face3OutlinedIcon />,
+      value: t("menuAbout"),
+    },
+  };
 
   const buttonCustomStyle = {
     borderRadius: "3rem",
@@ -59,7 +72,7 @@ export const Topbar = ({ LanguageToggle }: Props) => {
         justifyContent="space-between"
         alignItems="flex-start"
       >
-        {!isMobile && (
+        <Hidden smDown>
           <Grid xs={2}>
             <ThemeProvider theme={headingFont}>
               <Typography
@@ -70,7 +83,7 @@ export const Topbar = ({ LanguageToggle }: Props) => {
               </Typography>
             </ThemeProvider>
           </Grid>
-        )}
+        </Hidden>
 
         <Hidden smDown>
           <Grid xs={8}>
@@ -95,43 +108,21 @@ export const Topbar = ({ LanguageToggle }: Props) => {
         >
           <Box
             role="presentation"
-            onClick={() => toggleDrawer(!openDrawer)}
-            onKeyDown={() => toggleDrawer(!openDrawer)}
             component="div"
             sx={{
               width: "auto",
             }}
           >
-            <List>
-              <ListItem key={"home"} disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    <HomeOutlinedIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={t("menuHome")} />
-                </ListItemButton>
-              </ListItem>
-            </List>
-            <List>
-              <ListItem key={"about"} disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    <Face3OutlinedIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={t("menuAbout")} />
-                </ListItemButton>
-              </ListItem>
-            </List>
-            <List>
-              <ListItem key={"contact"} disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    <ContactPageOutlinedIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={t("menuContact")} />
-                </ListItemButton>
-              </ListItem>
-            </List>
+            {Object.entries(menu).map(([key, item]) => (
+              <List>
+                <ListItem key={key} disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>{item.icon}</ListItemIcon>
+                    <ListItemText primary={item.value} />
+                  </ListItemButton>
+                </ListItem>
+              </List>
+            ))}
           </Box>
         </Drawer>
         <Grid xs={2}>
