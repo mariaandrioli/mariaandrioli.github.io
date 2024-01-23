@@ -1,11 +1,10 @@
+import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import "./App.css";
 import { Hero } from "./components/Hero";
 import { LanguageToggle } from "./components/LanguageToggle";
 import { Topbar } from "./components/Topbar";
-import { CssBaseline, createTheme } from "@mui/material";
-import { ThemeProvider } from "@mui/material";
 
 const darkTheme = createTheme({
   typography: {

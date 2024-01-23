@@ -1,18 +1,18 @@
 import {
-  createTheme,
-  Container,
   Box,
-  Typography,
+  Container,
   ThemeProvider,
+  Typography,
+  createTheme,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import { UnderConstruction } from "./UnderConstruction";
 
 const headingFont = createTheme({
   typography: {
     fontFamily: "Young Serif, serif",
   },
 });
-
 
 export const Hero: React.FC = () => {
   const { t } = useTranslation();
@@ -76,6 +76,7 @@ export const Hero: React.FC = () => {
         >
           {subtitle}
         </Typography>
+        <UnderConstruction />
       </Box>
     </Container>
   );

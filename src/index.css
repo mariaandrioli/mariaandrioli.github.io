@@ -1,12 +1,12 @@
 :root {
-  font-family: "Source Sans 3", Inter, system-ui, Avenir, Helvetica,
-    Arial, sans-serif;
+  font-family: "Source Sans 3", Inter, system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
   margin: 0 auto;
   padding: 2rem;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: dark;
+  color-scheme: light;
   color: rgba(255, 255, 255, 0.87);
 
   font-synthesis: none;

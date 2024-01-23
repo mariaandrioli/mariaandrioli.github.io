@@ -1,7 +1,6 @@
-import ContactPageOutlinedIcon from "@mui/icons-material/ContactPageOutlined";
-import Face3OutlinedIcon from "@mui/icons-material/Face3Outlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
+import OpenInNewRoundedIcon from "@mui/icons-material/OpenInNewRounded";
 import {
   Box,
   Button,
@@ -16,7 +15,7 @@ import {
   ListItemText,
   ThemeProvider,
   Typography,
-  createTheme
+  createTheme,
 } from "@mui/material";
 import { ReactNode, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -40,14 +39,34 @@ export const Topbar = ({ LanguageToggle }: Props) => {
     home: {
       icon: <HomeOutlinedIcon />,
       value: t("menuHome"),
+      route: "/",
+      external: false,
     },
-    contact: {
-      icon: <ContactPageOutlinedIcon />,
-      value: t("menuContact"),
+    // contact: {
+    //   icon: <ContactPageOutlinedIcon />,
+    //   value: t("menuContact"),
+    // },
+    // about: {
+    //   icon: <Face3OutlinedIcon />,
+    //   value: t("menuAbout"),
+    // },
+    linkedin: {
+      icon: <OpenInNewRoundedIcon />,
+      value: t("menuLinkedin"),
+      route: "https://www.linkedin.com/in/mariateresaandrioli/",
+      external: true,
     },
-    about: {
-      icon: <Face3OutlinedIcon />,
-      value: t("menuAbout"),
+    github: {
+      icon: <OpenInNewRoundedIcon />,
+      value: t("menuGithub"),
+      route: "https://github.com/mariaandrioli",
+      external: true,
+    },
+    cv: {
+      icon: <OpenInNewRoundedIcon />,
+      value: t("menuCV"),
+      route: "https://read.cv/mariaandrioli",
+      external: true,
     },
   };
 
@@ -58,7 +77,7 @@ export const Topbar = ({ LanguageToggle }: Props) => {
     color: "#563d80",
     letterSpacing: "0.005rem",
     "&:hover": {
-      backgroundColor: "#bd98e0", // Change the hover background color
+      backgroundColor: "#bd98e0",
       color: "#fff",
     },
   };
@@ -87,9 +106,16 @@ export const Topbar = ({ LanguageToggle }: Props) => {
         <Hidden smDown>
           <Grid xs={8}>
             <Box display={"flex"} gap={1} justifyContent={"center"}>
-              <Button sx={buttonCustomStyle}>{t("menuHome")}</Button>
-              <Button sx={buttonCustomStyle}>{t("menuAbout")}</Button>
-              <Button sx={buttonCustomStyle}>{t("menuContact")}</Button>
+              {Object.entries(menu).map(([key, item]) => (
+                <a href={item.route} target="_blank" key={key}>
+                  <Button
+                    sx={buttonCustomStyle}
+                    endIcon={item.external ? item.icon : null}
+                  >
+                    {item.value}
+                  </Button>
+                </a>
+              ))}
             </Box>
           </Grid>
         </Hidden>
@@ -114,12 +140,14 @@ export const Topbar = ({ LanguageToggle }: Props) => {
           >
             {Object.entries(menu).map(([key, item]) => (
               <List>
-                <ListItem key={key} disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>{item.icon}</ListItemIcon>
-                    <ListItemText primary={item.value} />
-                  </ListItemButton>
-                </ListItem>
+                <a href={item.route} target="_blank" key={key}>
+                  <ListItem key={key} disablePadding>
+                    <ListItemButton>
+                      <ListItemIcon>{item.icon}</ListItemIcon>
+                      <ListItemText primary={item.value} />
+                    </ListItemButton>
+                  </ListItem>
+                </a>
               </List>
             ))}
           </Box>
