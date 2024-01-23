@@ -16,8 +16,7 @@ import {
   ListItemText,
   ThemeProvider,
   Typography,
-  createTheme,
-  useMediaQuery,
+  createTheme
 } from "@mui/material";
 import { ReactNode, useState } from "react";
 import { useTranslation } from "react-i18next";
